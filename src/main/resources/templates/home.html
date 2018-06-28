@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <div th:include="fragmentos/head"/>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+    <div th:include="fragmentos/navbar"/>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 card mb-3">
+                    <div class="card-header mb-2">
+                        <div class="row justify-content-between">
+                            <h3>
+                                <i class="fa fa-fw fa-home"></i> <span th:text="| ${user.nome}, seja bem vindo!|"></span>
+                            </h3>
+                            <div class="btn-group" role="group">
+                                <a href="/usuario/detalhes-usuario-logado" class="btn btn-primary align-self-center" role="button">
+                                    <i class="fa fa-fw fa-address-card"></i> Perfil
+                                </a>
+                                <a href="/evento/novo" class="btn btn-primary align-self-center" role="button">
+                                    <i class="fa fa-fw fa-plus"></i> Novo Evento
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-flush small">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-fw fa-newspaper-o"></i> Seus últimos Eventos
+                                    </div>
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" th:each="evento: ${eventos}" th:href="@{/evento/{id}(id=${evento.id})}">
+                                            <div class="media">
+                                                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/45x45" alt="">
+                                                <div class="media-body">
+                                                    <strong th:text="${evento.nome}"></strong> <br>
+                                                    Período para submissão: <br>
+                                                    De <strong th:text="*{#dates.format(evento.dataAbertura, 'E, dd MMM yyyy HH:mm')}"></strong>
+                                                    até <strong th:text="*{#dates.format(evento.dataFechamento, 'E, dd MMM yyyy HH:mm')}"></strong>
+                                                    <div class="text-muted smaller" th:text="|Criado em *{#dates.format(evento.data, 'dd/MM/yyyy hh:mm:ss')}|"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item list-group-item-action" th:href="@{/evento/}">Ver todos os eventos...</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> Últimos 5 Artigos Submetidos
+                                    </div>
+                                    <div class="list-group list-group-flush small">
+                                        <a class="list-group-item list-group-item-action" th:each="submissao: ${submissoes}" th:href="@{/submissoes/{id}(id=${submissao.id})}">
+                                            <div class="media">
+                                                <img class="d-flex mr-3 rounded-circle" th:src="@{/images/artigo.jpg}" alt="">
+                                                <div class="media-body">
+                                                    <strong th:text="${submissao.titulo}"></strong> <br>
+                                                    Evento: <strong th:text="${submissao.evento.nome}"></strong>
+                                                    <div class="text-muted smaller" th:text="|Submetido em *{#dates.format(submissao.dataSubmissao, 'E, dd MMM yyyy HH:mm')}|"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item list-group-item-action" th:href="@{/submissoes/}">Ver todas as submissões...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:include="fragmentos/footer"/>
+    </div>
+    <div th:include="fragmentos/scripts-base"/>
+</body>
+
+</html>

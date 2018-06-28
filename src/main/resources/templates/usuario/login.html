@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <div th:include="fragmentos/head"/>
+</head>
+
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header"><i class="fa fa-fw fa-coffee"></i> Artigos Submissões</div>
+      <div class="card-body">
+        <form method="POST" th:action="@{/login}">
+          <div class="form-group">
+            <label for="usernameInput">Login</label>
+            <input class="form-control" name="username" id="usernameInput" type="text">
+          </div>
+          <div class="form-group">
+            <label for="senhaInput">Senha</label>
+            <input class="form-control" name="password" id="senhaInput" type="password" placeholder="Senha">
+          </div>
+
+          <input type="submit" class="btn btn-primary btn-block" value="Salvar"/>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" th:href="@{/usuario/cadastro}">Novo aqui?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:include="fragmentos/scripts-base"/>
+</body>
+
+</html>

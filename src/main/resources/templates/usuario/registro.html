@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <div th:include="fragmentos/head"/>
+</head>
+
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Cadastro do Novo Usuário</div>
+      <div class="card-body">
+        <div th:include="fragmentos/alerta"/>
+        <form method="POST" th:object="${user}" th:action="@{/usuario/cadastro}">
+          <div class="form-group">
+            <div class="form-row">
+              <label for="usernameInput">Username</label>
+              <input class="form-control" id="usernameInput" th:field="*{username}" type="text" aria-describedby="nameHelp" placeholder="Defina o seu username...">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <label for="nomeInput">Nome</label>
+              <input class="form-control" id="nomeInput" th:field="*{nome}" type="text" aria-describedby="nameHelp" placeholder="Digite o seu nome...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input class="form-control" id="emailInput" th:field="*{email}" type="email" aria-describedby="emailHelp" placeholder="Entre com seu email...">
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="senhaInput">Senha</label>
+                <input class="form-control" id="senhaInput" th:field="*{password}" type="password" placeholder="Senha...">
+              </div>
+              <div class="col-md-6">
+                <label for="confirmarSenhaInput">Confirmar Senha</label>
+                <input class="form-control" id="confirmarSenhaInput" th:field="*{passwordConfirm}" type="password" placeholder="Confirme a Senha...">
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary btn-block" value="Salvar"/>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" th:href="@{/login}">Pagina de Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:include="fragmentos/scripts-base"/>
+</body>
+
+</html>

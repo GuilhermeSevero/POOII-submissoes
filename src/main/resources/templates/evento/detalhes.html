@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta th:include="fragmentos/head"/>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+<div th:include="fragmentos/navbar"/>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div th:include="fragmentos/alerta"/>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <h2>
+                                <i class="fa fa-fw fa-newspaper-o"></i> Detalhes do Evento
+                            </h2>
+                            <a th:href="@{/submissoes/evento/{id}(id=${evento.id})}" class="btn btn-primary align-self-center mr-4" role="button">
+                                <i class="fa fa-fw fa-graduation-cap"></i> Submeter Artigo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" th:object="${evento}" th:action="@{/evento/{id}(id=${evento.id})}">
+                            <div class="form-group">
+                                <label for="nomeInput">Nome do Evento</label>
+                                <input
+                                    class="form-control"
+                                    id="nomeInput" th:field="*{nome}"
+                                    type="text" aria-describedby="nameHelp"
+                                    placeholder="Digite o nome do evento..."
+                                    required
+                                    th:readonly="${podeAlterar} ? 'false' : 'true'"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="dataInput">Data</label>
+                                <input
+                                    class="form-control"
+                                    id="dataInput"
+                                    th:field="*{data}"
+                                    type="datetime-local"
+                                    readonly
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="dataAberturaInput">Data Abertura</label>
+                                <input
+                                    class="form-control"
+                                    id="dataAberturaInput"
+                                    th:field="*{dataAbertura}"
+                                    type="datetime-local"
+                                    required
+                                    th:readonly="${podeAlterar} ? 'false' : 'true'"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="dataFechamentoInput">Data Fechamento</label>
+                                <input
+                                    class="form-control"
+                                    id="dataFechamentoInput"
+                                    th:field="*{dataFechamento}"
+                                    type="datetime-local"
+                                    th:readonly="${podeAlterar} ? 'false' : 'true'"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="usuarioInput">Usuário Responsável</label>
+                                <input
+                                    class="form-control"
+                                    id="usuarioInput"
+                                    th:field="*{usuario.nome}"
+                                    type="text"
+                                    readonly
+                                >
+                            </div>
+                            <input
+                                type="submit"
+                                class="btn btn-primary btn-block"
+                                value="Salvar"
+                                th:if="${podeAlterar}"
+                            />
+                        </form>
+                    </div>
+                    <!--<div class="card-footer small text-muted"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="fragmentos/footer"/>
+</div>
+
+<div th:include="fragmentos/scripts-base"/>
+
+</body>
+
+</html>

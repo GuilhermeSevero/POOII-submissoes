@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta th:include="fragmentos/head"/>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+<div th:include="fragmentos/navbar"/>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div th:include="fragmentos/alerta"/>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2><i class="fa fa-fw fa-graduation-cap"></i> Nova submissão para o evento</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data" th:object="${submissao}" th:action="@{/submissoes/evento/{idEvento}(idEvento=${idEvento})}">
+                            <div class="form-group">
+                                <label for="tituloInput">Título</label>
+                                <input class="form-control" id="tituloInput" th:field="*{titulo}" type="text" aria-describedby="nameHelp" placeholder="Digite o título..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="resumoInput">Resumo</label>
+                                <input class="form-control" id="resumoInput" th:field="*{resumo}" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="artigoInput">Artigo</label>
+                                <input class="form-control" id="artigoInput" name="artigo" type="file" required>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Submeter"/>
+                        </form>
+                    </div>
+                    <!--<div class="card-footer small text-muted"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="fragmentos/footer"/>
+</div>
+
+<div th:include="fragmentos/scripts-base"/>
+
+</body>
+
+</html>

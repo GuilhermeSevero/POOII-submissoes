@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta th:include="fragmentos/head"/>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+<div th:include="fragmentos/navbar"/>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div th:include="fragmentos/alerta"/>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <h2>
+                                <i class="fa fa-fw fa-graduation-cap"></i> Detalhes da Submissão
+                            </h2>
+                            <a th:href="@{/evento/{idEvento}(idEvento=${submissao.evento.id})}" class="btn btn-primary align-self-center mr-4" role="button">
+                                <i class="fa fa-fw fa-newspaper-o"></i> Ver evento
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data" th:object="${submissao}" th:action="@{/submissoes/{id}(id=${submissao.id})}">
+                            <div class="form-group">
+                                <label for="nomeInput">Título</label>
+                                <input
+                                    class="form-control"
+                                    id="nomeInput"
+                                    th:field="*{titulo}"
+                                    type="text"
+                                    aria-describedby="nameHelp"
+                                    placeholder="Digite um título..."
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="resumoInput">Resumo</label>
+                                <input
+                                    class="form-control"
+                                    id="resumoInput"
+                                    th:field="*{resumo}"
+                                    type="text"
+                                    placeholder="Resumo da submissão..."
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="eventoSelect">Evento</label>
+                                <input
+                                    class="form-control"
+                                    id="eventoSelect"
+                                    th:field="*{evento.nome}"
+                                    type="text"
+                                    readonly
+                                >
+                            </div>
+                            <div class="form-group">
+                                <strong><a th:href="@{/artigos/{nomeArtigo}(nomeArtigo=${submissao.nomeArtigo})}" download>Download Artigo</a></strong>
+                            </div>
+                            <div class="form-group">
+                                <label for="artigoInput">Alterar artigo submetido</label>
+                                <input
+                                    class="form-control"
+                                    id="artigoInput"
+                                    name="artigo"
+                                    type="file"
+                                >
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Salvar"/>
+                        </form>
+                    </div>
+                    <!--<div class="card-footer small text-muted"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="fragmentos/footer"/>
+</div>
+
+<div th:include="fragmentos/scripts-base"/>
+
+</body>
+
+</html>

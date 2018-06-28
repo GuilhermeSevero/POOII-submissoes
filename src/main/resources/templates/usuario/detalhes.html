@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta th:include="fragmentos/head"/>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+<div th:include="fragmentos/navbar"/>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div th:include="fragmentos/alerta"/>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2><i class="fa fa-fw fa-address-card"></i> Editar perfil do usuário</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" th:object="${user}" th:action="@{/usuario/{id}(id=${id})}">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="usernameInput">Username</label>
+                                    <input class="form-control" id="usernameInput" th:field="*{username}" type="text" aria-describedby="nameHelp" placeholder="Defina o seu username...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="nomeInput">Nome</label>
+                                    <input class="form-control" id="nomeInput" th:field="*{nome}" type="text" aria-describedby="nameHelp" placeholder="Digite o seu nome...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailInput">Email</label>
+                                <input class="form-control" id="emailInput" th:field="*{email}" type="email" aria-describedby="emailHelp" placeholder="Entre com seu email...">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label for="senhaInput">Alterar Senha</label>
+                                        <input class="form-control" id="senhaInput" th:field="*{password}" type="password" placeholder="Senha...">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="confirmarSenhaInput">Confirmar Nova Senha</label>
+                                        <input class="form-control" id="confirmarSenhaInput" th:field="*{passwordConfirm}" type="password" placeholder="Confirme a Senha...">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Salvar"/>
+                        </form>
+                    </div>
+                    <!--<div class="card-footer small text-muted"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:include="fragmentos/footer"/>
+</div>
+
+<div th:include="fragmentos/scripts-base"/>
+
+</body>
+
+</html>
